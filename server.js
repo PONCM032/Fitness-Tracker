@@ -21,10 +21,3 @@ app.use(require("./routes/htmlRoutes.js"));
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);
   });
-  
-
-// "/api/workouts"
-
-// "/api/workouts/range"
-
-// "/"
