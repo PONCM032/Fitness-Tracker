@@ -1,9 +1,10 @@
+//require
 const express = require("express");
-const mongojs = require("mongojs");
+const mongoose = require("mongoose")
 const logger = require("morgan");
-const path = require("path");
-
 const app = express();
+
+const PORT = process.env.PORT || 3000;
 
 app.use(logger("dev"));
 
@@ -12,17 +13,18 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-// const databaseUrl = "";
-// const collections = ["notes"];
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/custommethoddb", { useNewUrlParser: true });
 
-const db = mongojs(databaseUrl, collections);
+app.use(require("./routes/apiRoutes.js"));
+app.use(require("./routes/htmlRoutes.js"));
 
-db.on("error", error => {
-  console.log("Database Error:", error);
-});
+app.listen(PORT, () => {
+    console.log(`App running on port ${PORT}!`);
+  });
+  
 
-"/api/workouts"
+// "/api/workouts"
 
-"/api/workouts/range"
+// "/api/workouts/range"
 
-"/"
+// "/"
